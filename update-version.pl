@@ -16,11 +16,13 @@ my $meta_json = decode_json(read_binary('MYMETA.json'));
 my $new_version;
 my $dry_run;
 my $print_help;
+my $changes_ok;
 
 GetOptions(
     "version|v=s" => \$new_version,
     "dry-run|d"   => \$dry_run,
     "help|h"      => \$print_help,
+    "changes-ok" => \$changes_ok,
     )
     or die "GetOptions";
 
@@ -33,8 +35,13 @@ Options:
                                     to increment the last version.
   -d, --dry-run                     Do nothing. Only print status messages.
   -h, --help                        Print this help.
+      --changes-ok
 EOF
     exit;
+}
+
+if (not defined $changes_ok) {
+    die "did you update the CHANGES file? if yes, set --changes-ok";
 }
 
 if ($dry_run) {
