@@ -95,6 +95,8 @@ verbose_system(qw/git push --tags/);
 # Rerun Makefile.PL to get the new version
 verbose_system(qw/perl Makefile.PL/);
 
+# Build release archive
+verbose_system(qw/make dist/);
 
 
 sub write_file ($filename, $content) {
